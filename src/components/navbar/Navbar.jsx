@@ -8,22 +8,21 @@ import clsx from 'clsx';
 import styles from './navbar.module.scss';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useCustomText } from '@/hooks/useText';
 
 export default function Navbar({ textArr }) {
-  console.log('navbar');
-  const time = new Date().getTime();
   const pathName = usePathname();
+  const setCapitalize = useCustomText('capitalize');
 
   return (
     <nav className={clsx(styles.navbar)}>
-      <h2>{time}</h2>
       {textArr.map((txt) => (
         <Link
           key={txt}
           href={`/${txt}`}
           className={clsx(pathName === '/' + txt ? styles.on : '')}
         >
-          {txt.charAt(0).toUpperCase() + txt.slice(1)}
+          {setCapitalize(txt)}
         </Link>
       ))}
     </nav>
