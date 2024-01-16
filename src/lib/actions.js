@@ -1,9 +1,9 @@
-import { Post } from './models';
 import { connectDB } from './connectDB';
+import { Post } from './models';
 
-const getPosts = async () => {
+export const getPosts = async () => {
   try {
-    console.log('클라이언트 요청에ㅐ 의해 DB접속 시작');
+    console.log('클라이언트 요청에 의해 DB접속 시작');
     connectDB();
   } catch (err) {
     console.log(err);
