@@ -23,6 +23,7 @@ export default async function Youtube() {
             key={data.id}
             data={data}
             isPriority={idx < 4 ? true : false}
+            isPrefetch={idx < 6 ? false : true}
           />
         );
       })}
