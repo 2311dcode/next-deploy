@@ -3,10 +3,11 @@ import styles from './header.module.scss';
 import Link from 'next/link';
 import Navbar from '../navbar/Navbar';
 import BtnLogin from '../btnLogin/BtnLogin';
-import { FaBarsStaggered } from 'react-icons/fa6';
+import BtnMenuToggle from '../btnMenuToggle/BtnMenuToggle';
 //npm i react-icons
 
 export default function Header() {
+  console.log('header');
   return (
     <header className={clsx(styles.header)}>
       <h1>
@@ -15,7 +16,7 @@ export default function Header() {
 
       <Navbar textArr={['about', 'youtube', 'post']} />
       <BtnLogin session={true} />
-      <FaBarsStaggered className={styles.btnMenu} size={20} color={'#333'} />
+      <BtnMenuToggle />
     </header>
   );
 }
