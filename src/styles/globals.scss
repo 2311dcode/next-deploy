@@ -12,7 +12,7 @@
 
 body {
   background-color: var(--bg);
-  color: var(--texxt);
+  color: var(--text);
 
   a {
     color: inherit;
@@ -26,5 +26,9 @@ body {
   min-height: 100vh;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+
+  .wrap {
+    width: 100%;
+    padding: 70px 0px;
+  }
 }
