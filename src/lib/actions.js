@@ -8,7 +8,7 @@ export const getPosts = async (id) => {
     connectDB();
     let posts = null;
     if (id) posts = await Post.findById(id);
-    else posts = await Post.find();
+    else posts = await Post.find().sort({ _id: -1 });
     return posts;
   } catch (err) {
     console.log(err);
@@ -18,9 +18,7 @@ export const getPosts = async (id) => {
 
 export const addPost = async (formData) => {
   'use server';
-  // console.log(formData);
-  // const inputsData = Object.fromEntries(formData);
-  // console.log(inputsData);
+
   const { title, img, desc } = Object.fromEntries(formData);
 
   try {
@@ -30,6 +28,26 @@ export const addPost = async (formData) => {
   } catch (err) {
     console.log(err);
     throw new Error('Fail to save Post!');
+  }
+
+  revalidatePath('/post');
+  redirect('/post');
+};
+
+export const deletePost = async (formData) => {
+  'use server';
+
+  try {
+    connectDB();
+    const data = Object.fromEntries(formData);
+    //const id = { _id: Object.keys(data)[0] };
+    const id = Object.keys(data)[0];
+
+    //findByAndDelete(id); id:삭제할 document의 _id의 value값 전달 (객체전달 아님)
+    await Post.findByIdAndDelete(id);
+  } catch (err) {
+    console.log(err);
+    throw new Error('Fail to delete Post');
   }
 
   revalidatePath('/post');
