@@ -14,7 +14,17 @@ export default async function PostDetail({ params }) {
 
       <article>
         <div className={clsx(styles.pic)}>
-          {post.img && <Image src={post.img} alt={post.title} priority fill />}
+          {post.img && (
+            <Image
+              src={post.img}
+              alt={post.title}
+              priority
+              fill
+              sizes="(min-width:640px) 50vw, 100vw"
+              placeholder="blur"
+              blurDataURL={post.img}
+            />
+          )}
         </div>
         <div className={clsx(styles.txt)}>
           <h2>{post.title}</h2>
@@ -23,13 +33,13 @@ export default async function PostDetail({ params }) {
           {/* 이벤트발생시킬 버튼을 form으로 감싼뒤 서버액션함수를 action에 등록, 인수전달시에는 hidden타입으로 input만들어서 name에 연동해놓으면 서버액션함수에 파라미터로 전달됨 */}
           <nav>
             <Link href="/post/edit">EDIT</Link>
-            <form action={deletePost}>
-              <nav>
-                <input type="hidden" name={id} />
-                <button>Delete</button>
-              </nav>
-            </form>
           </nav>
+          <form action={deletePost}>
+            <nav>
+              <input type="hidden" name={id} />
+              <button>DELETE</button>
+            </nav>
+          </form>
         </div>
       </article>
     </section>

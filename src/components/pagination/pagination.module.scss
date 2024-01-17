@@ -2,9 +2,13 @@
   a {
     font-weight: bold;
     color: var(--text);
+    margin: 5px;
 
     &.on {
       color: var(--point);
     }
+  }
+  button {
+    border: none;
   }
 }
