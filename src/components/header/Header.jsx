@@ -4,7 +4,6 @@ import Link from 'next/link';
 import Navbar from '../navbar/Navbar';
 import BtnLogin from '../btnLogin/BtnLogin';
 import BtnMenuToggle from '../btnMenuToggle/BtnMenuToggle';
-//npm i react-icons
 
 export default function Header() {
   console.log('header');
@@ -14,7 +13,7 @@ export default function Header() {
         <Link href="/">DCODELAB</Link>
       </h1>
 
-      <Navbar textArr={['about', 'youtube', 'post']} />
+      <Navbar textArr={['about', 'youtube', 'post', 'join']} />
       <BtnLogin session={true} />
       <BtnMenuToggle />
     </header>
