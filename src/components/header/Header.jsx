@@ -16,10 +16,14 @@ export default async function Header() {
       </h1>
 
       <Navbar
-        textArr={['about', 'youtube', 'post', 'join']}
+        textArr={
+          session?.user
+            ? ['about', 'youtube', 'post']
+            : ['about', 'youtube', 'join']
+        }
         session={session}
       />
-      <BtnLogin session={false} />
+      <BtnLogin session={session} />
       <BtnMenuToggle />
     </header>
   );

@@ -21,11 +21,11 @@ export const authConfig = {
     authorized({ auth, request }) {
       const user = auth?.user;
       const isPostPage = request.nextUrl?.pathname.startsWith('/post');
-
       const isLoginPage = request.nextUrl?.pathname.startsWith('/login');
 
-      if (isPostPage && !user) return false;
-      if (isLoginPage && user)
+      if (isPostPage && !user)
+        return Response.redirect(new URL('/', request.nextUrl));
+      else if (isLoginPage && user)
         return Response.redirect(new URL('/', request.nextUrl));
       return true;
     },

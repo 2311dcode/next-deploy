@@ -158,6 +158,8 @@ export const handleLogin = async (prevState, formData) => {
 
   try {
     await signIn('credentials', { username, password });
+    revalidatePath('/');
+    redirect('/');
   } catch (err) {
     console.log('인증에러');
     console.log(err);
@@ -172,4 +174,6 @@ export const handleLogin = async (prevState, formData) => {
 export const handleLogout = async () => {
   'use server';
   await signOut();
+  revalidatePath('/');
+  redirect('/');
 };
