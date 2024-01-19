@@ -4,7 +4,7 @@ import styles from './mobileMenu.module.scss';
 import { useGlobalData } from '@/hooks/useGlobalData';
 import { useEffect } from 'react';
 import { useThrottle } from '@/hooks/useThrottle';
-import MobileNavbar from '../mobileNavbar/MobileNavbar';
+import Navbar from '../navbar/Navbar';
 
 export default function MobileMenu() {
   //useThrottle hook으로부터 throttling적용함수 반환
@@ -32,7 +32,10 @@ export default function MobileMenu() {
           onClick={() => setMenuOpen(false)}
         >
           <h1>MobileMenu</h1>
-          <MobileNavbar textArr={['about', 'youtube', 'post']} />
+          <Navbar
+            className={clsx(styles.moMenu)}
+            textArr={['about', 'youtube', 'post', 'join']}
+          />
         </aside>
       )}
     </>

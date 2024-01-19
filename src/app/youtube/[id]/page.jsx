@@ -24,8 +24,9 @@ export default async function Detail({ params }) {
             title={data.title}
           ></iframe>
         </div>
-        <h3>{data.title}</h3>
+        <h2>{data.title}</h2>
         <p>{data.description}</p>
+        <p>{data.publishedAt}</p>
       </article>
     </section>
   );
