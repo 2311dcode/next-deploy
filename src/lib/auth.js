@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import Github from 'next-auth/providers/github';
 
 import { connectDB } from './connectDB';
 import { User } from './models';
@@ -12,13 +13,13 @@ const checkUserDB = async (credentials) => {
     connectDB();
 
     const user = await User.findOne({ username: credentials.username });
-    if (!user) throw new Error('Wrong credentials!');
+    if (!user) throw new Error('there is no username yout input in DB!!');
 
     const isPasswordCorrect = await bcrypt.compare(
       credentials.password,
       user.password
     );
-    if (!isPasswordCorrect) throw new Error('Wrong credentials!');
+    if (!isPasswordCorrect) throw new Error('now matched password from DB!');
 
     return user;
   } catch (err) {
@@ -47,10 +48,18 @@ export const {
         }
       },
     }),
+    //github 인증 Provider설정
+    Github({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
+    }),
   ],
   //인증이 성공완료된 자동 실행될 callback함수(외부 autoConfig에서 가져옴)
   callbacks: {
     async signIn({ user, account, profile }) {
+      console.log('user', user);
+      console.log('account', account);
+      console.log('profile', profile);
       return true;
     },
     //기존 auth.config에 있는 callbacks는 override되면 안되기에 아래쪽에서 재 override처리
