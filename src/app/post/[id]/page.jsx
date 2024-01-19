@@ -31,6 +31,7 @@ export default async function PostDetail({ params }) {
           <p>{post.desc}</p>
           {/* 서버컴포넌트에서 onClick 연결 불가(Client방식에서만 가능) */}
           {/* 이벤트발생시킬 버튼을 form으로 감싼뒤 서버액션함수를 action에 등록, 인수전달시에는 hidden타입으로 input만들어서 name에 연동해놓으면 서버액션함수에 파라미터로 전달됨 */}
+          <p>{post.username}</p>
           <nav>
             <Link href="/post/edit">EDIT</Link>
           </nav>

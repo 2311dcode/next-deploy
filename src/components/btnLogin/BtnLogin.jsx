@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { handleLogout } from '@/lib/actions';
 
 export default function BtnLogin({ session }) {
+  //console.log(session);
   return (
     <>
       {!session ? (
@@ -12,7 +13,11 @@ export default function BtnLogin({ session }) {
           Login
         </Link>
       ) : (
-        <form action={handleLogout}>
+        <form className={clsx(styles.loginInfo)} action={handleLogout}>
+          <span className={clsx(styles.thumbnail)}>
+            <img src={session.user.image} />
+          </span>
+          <b>{session.user.name}님</b>
           <button className={clsx(styles.btn, styles.btnLogout)}>Logout</button>
         </form>
       )}

@@ -6,12 +6,12 @@ import { usePathname } from 'next/navigation';
 import { useCustomText } from '@/hooks/useText';
 
 export default function Navbar({ textArr, session }) {
+  //console.log(session);
   const pathName = usePathname();
   const setCapitalize = useCustomText('capitalize');
 
   return (
     <nav className={clsx(styles.navbar)}>
-      {session?.user ? '로그인됨' : '비로그인상태'}
       {textArr.map((txt) => (
         <Link
           key={txt}
@@ -21,6 +21,7 @@ export default function Navbar({ textArr, session }) {
           {setCapitalize(txt)}
         </Link>
       ))}
+      {/* {session?.user ? `${session.user.name}` : ''} */}
     </nav>
   );
 }

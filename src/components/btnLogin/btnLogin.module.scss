@@ -23,6 +23,26 @@
   border-color: transparent;
 }
 
+.loginInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  .thumbnail {
+    display: inline-block;
+    overflow: hidden;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
 @media (max-width: $tablet) {
   .btn {
     display: none;

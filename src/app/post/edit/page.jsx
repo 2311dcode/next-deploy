@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import styles from './edit.module.scss';
-import { getPosts } from '@/lib/actions';
+import { getPosts, updatePost } from '@/lib/actions';
+import InputImage from '@/components/inputImage/InputImage';
 
 export default async function Edit({ params }) {
   const { id } = params;
@@ -8,16 +9,15 @@ export default async function Edit({ params }) {
   return (
     <section className={clsx(styles.edit)}>
       <h1>edit</h1>
-      <form action="">
-        <input type="text" name={id} />
-        <input type="text" name="title" value={data.title} />
-        <input type="text" name="img" value={data.img || ''} />
+      <form action={updatePost}>
+        <input type="hidden" name="id" value={id} />
+        <input type="text" name="title" defaultValue={data.title} />
+        <InputImage data={data} />
         <textarea
           name="desc"
-          id=""
           cols="30"
-          rows="10"
-          value={data.desc}
+          rows="3"
+          defaultValue={data.desc}
         ></textarea>
 
         <nav>
@@ -25,7 +25,6 @@ export default async function Edit({ params }) {
           <input type="submit" value="update" />
         </nav>
       </form>
-      <p>{id}</p>
     </section>
   );
 }
