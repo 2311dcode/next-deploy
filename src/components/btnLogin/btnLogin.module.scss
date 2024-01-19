@@ -9,6 +9,7 @@
   cursor: pointer;
   margin-left: 0;
   transition: background 0.5s, border-color 0.5s;
+  line-height: 30px;
 
   &.btnLogout {
     background: var(--text);
