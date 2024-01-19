@@ -6,16 +6,18 @@ const postSchema = new mongoose.Schema(
     desc: { type: String, required: true },
     img: { type: String },
     userid: { type: String },
+    username: { type: String, required: true, unique: true },
   },
   { timestamps: true }
 );
 
 const userSchema = new mongoose.Schema(
   {
-    username: { type: String, required: true },
+    username: { type: String, required: true, unique: true },
     email: { type: String, required: true },
     password: { type: String },
     img: { type: String },
+    owner: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
