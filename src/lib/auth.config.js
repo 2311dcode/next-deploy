@@ -5,7 +5,7 @@ export const authConfig = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
-        token.owner = token.email === 'phoebe7010@daum.net' ? true : false;
+        token.owner = token.email === 'phoebe70100@gmail.com' ? true : false;
         //console.log('auth', token);
       }
       return token;
