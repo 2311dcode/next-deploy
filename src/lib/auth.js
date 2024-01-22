@@ -67,7 +67,7 @@ export const {
               img: profile.avatar_url,
             };
 
-            if (profile.email === 'tubi55@nate.com') {
+            if (profile.email === 'phoebe70100@gmail.com') {
               tempUser = { ...tempUser, owner: true };
             }
             const newUser = new User(tempUser);
