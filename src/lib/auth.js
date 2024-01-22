@@ -61,11 +61,16 @@ export const {
           const user = await User.findOne({ username: profile.login });
 
           if (!user) {
-            const newUser = new User({
+            let tempUser = {
               username: profile.login,
               email: profile.email,
               img: profile.avatar_url,
-            });
+            };
+
+            if (profile.email === 'tubi55@nate.com') {
+              tempUser = { ...tempUser, owner: true };
+            }
+            const newUser = new User(tempUser);
 
             await newUser.save();
           }
@@ -75,8 +80,6 @@ export const {
         }
       }
       if (account.provider === 'google') {
-        console.log('google', account);
-        console.log('google profile', profile);
         connectDB();
 
         try {
@@ -111,6 +114,7 @@ export const {
 	---jwt() : siginIn함수에서 추출한 정보값을 token에 옮겨담음
 	---session() : 넘겨받은 token값을 전역 session에 등록
 	---authorized() : 최종 로그인인증 결과에 따라 true, false값을 반환 (auth.config)
+
 	------------------------------------------------------------
 	middleware.js : NextAuth에서 authorized()가 반환하는 true, false값에 따라 강제 라우터 이동처리 (auth.config에 등록된 pages, authorized값 필요)
 */
